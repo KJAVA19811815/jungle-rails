@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thanks for the order, <%= @user.name %></h1>
+
+      <p>TOTAL <%= @order.total %></p><br>
+      <p>ID <%= @order.id %></p>
+
+      <% @order.line_items.each do |line_item| %>
+      <table>
+       <tr>
+        <td>
+            <%= line_item.product.name %>
+        </td>
+        <td>
+          <%= line_item.product.description %>
+        </td>
+        <td>
+          <%= line_item.quantity %>
+        </td>
+        <td>
+          <%= line_item.product.price %>
+        </td>
+        <td>
+          <%= line_item.total_price %>
+        </td>
+      </table>
+      <% end %>
+  </body>
+</html>

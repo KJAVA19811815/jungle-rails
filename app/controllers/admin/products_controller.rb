@@ -1,14 +1,18 @@
 class Admin::ProductsController < ApplicationController
+  http_basic_authenticate_with name:ENV["HTTP_AUTH_NAME"], passwrd:ENV["HTTP_AUTH_PASS"]
 
   def index
+    render plain: "I am inly accessible if you know the password"
     @products = Product.order(id: :desc).all
   end
 
   def new
+    render plain: "I am inly accessible if you know the password"
     @product = Product.new
   end
 
   def create
+    render plain: "I am inly accessible if you know the password"
     @product = Product.new(product_params)
 
     if @product.save
@@ -19,6 +23,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def destroy
+    render plain: "I am inly accessible if you know the password"
     @product = Product.find params[:id]
     @product.destroy
     redirect_to [:admin, :products], notice: 'Product deleted!'

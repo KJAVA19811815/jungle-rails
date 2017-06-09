@@ -1,0 +1,30 @@
+  <% @order.line_items.each do |line_item| %>
+  <table>
+   <tr>
+    <td>
+        <%= line_item.product.name %>
+    </td>
+    <td>
+      <%= line_item.product.description %>
+    </td>
+    <td>
+      <%= line_item.quantity %>
+    </td>
+    <td>
+      <%= line_item.product.price %>
+    </td>
+    <td>
+      <%= line_item.total_price %>
+    </td>
+    <td>
+      <img src = <%= line_item.product.image %>/>
+    </td>
+    <td>
+      <%= @order.total %>
+    </td>
+    <td>
+      <%= @order.email %>
+    </td>
+  </tr>
+</table>
+<% end %>

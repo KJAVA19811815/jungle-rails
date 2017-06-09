@@ -33,14 +33,16 @@ class OrdersController < ApplicationController
       description: "Khurram Virani's Jungle Order",
       currency:    'cad'
     )
+
   end
 
   def create_order(stripe_charge)
     order = Order.new(
       email: params[:stripeEmail],
       total_cents: cart_total,
-      stripe_charge_id: stripe_charge.id, # returned by stripe
-    )
+      stripe_charge_id: stripe_charge.id,
+      )
+
     cart.each do |product_id, details|
       if product = Product.find_by(id: product_id)
         quantity = details['quantity'].to_i
@@ -53,6 +55,9 @@ class OrdersController < ApplicationController
       end
     end
     order.save!
+    mail = Notifier.order_email(current_user, order)      # => an ActionMailer::MessageDelivery object
+    mail.deliver_now
+
     order
   end
 

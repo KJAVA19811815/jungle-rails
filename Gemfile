@@ -35,6 +35,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'stripe'
 gem 'faker'
+gem 'figaro', '~> 1.1', '>= 1.1.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
