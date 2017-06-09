@@ -1,5 +1,9 @@
 class Admin::ProductsController < ApplicationController
-  http_basic_authenticate_with name:ENV["HTTP_AUTH_NAME"], passwrd:ENV["HTTP_AUTH_PASS"]
+  name = ENV["HTTP_AUTH_NAME"]
+  password = ENV["HTTP_AUTH_PASS"]
+
+
+  http_basic_authenticate_with name: name, password: password
 
   def index
     render plain: "I am inly accessible if you know the password"
