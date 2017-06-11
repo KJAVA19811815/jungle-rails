@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     if user.save
       session[:user_id] = user.id
       redirect_to '/'
+      puts "THIS IS THE USER ID......"  + user.id.to_s
     else
       redirect_to '/signup'
  end

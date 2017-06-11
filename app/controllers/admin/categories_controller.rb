@@ -1,16 +1,12 @@
 class Admin::CategoriesController < ApplicationController
-  name = ENV["HTTP_AUTH_NAME"]
-  password = ENV["HTTP_AUTH_PASS"]
 
-    http_basic_authenticate_with name: name, password: password
+    http_basic_authenticate_with name: ENV["HTTP_AUTH_NAME"], password: ENV["HTTP_AUTH_PASS"]
 
   def index
-    render plain: "I am inly accessible if you know the password"
     @categories = Category.order(id: :desc).all
   end
 
   def new
-    render plain: "I am inly accessible if you know the password"
     @category = Category.new
   end
 
